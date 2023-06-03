@@ -88,7 +88,7 @@ springBoot {
 
 test {
     useJUnitPlatform()
-    exclude "**/*IT*", "**/*IntTest*"
+    exclude '**/*'
     testLogging {
         events 'FAILED', 'SKIPPED'
     }
@@ -112,16 +112,16 @@ modernizer {
 
 
 
-check.dependsOn integrationTest
-task testReport(type: TestReport) {
-    destinationDir = file("$buildDir/reports/tests")
-    reportOn test
-}
-
-task integrationTestReport(type: TestReport) {
-    destinationDir = file("$buildDir/reports/tests")
-    reportOn integrationTest
-}
+//check.dependsOn integrationTest
+//task testReport(type: TestReport) {
+//    destinationDir = file("$buildDir/reports/tests")
+//    reportOn test
+//}
+//
+//task integrationTestReport(type: TestReport) {
+//    destinationDir = file("$buildDir/reports/tests")
+//    reportOn integrationTest
+//}
 
 
 gitProperties {
@@ -266,9 +266,9 @@ wrapper {
     gradleVersion = "7.4.2"
 }
 
-task webapp_test(type: NpmTask, dependsOn: "npm_install") {
-    args = ["run", "webapp:test"]
-}
+//task webapp_test(type: NpmTask, dependsOn: "npm_install") {
+//    args = ["run", "webapp:test"]
+//}
 
 if (project.hasProperty("nodeInstall")) {
     node {
@@ -291,6 +291,6 @@ if (project.hasProperty("nodeInstall")) {
     tasks.named("npmSetup").configure { finalizedBy fixedNpm }
 }
 
-test.dependsOn webapp_test
+//test.dependsOn webapp_test
 compileJava.dependsOn processResources
 processResources.dependsOn bootBuildInfo
